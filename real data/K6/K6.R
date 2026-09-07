@@ -141,9 +141,9 @@ cvg <- function(x, y, alpha=0.05) {
 TT <- matrix(D3$TrueTemp,nrow(D3),1)
 MAE_LDK81 <- mean( abs(LDK81$predictor + intercept - TT), na.rm=TRUE )
 RMSE_LDK81 <- sqrt( mean( (LDK81$predictor + intercept - TT)^2, na.rm=TRUE ))
-CRPS_LDK81 <- mean( crps( list(mean=(LDK81$predictor + intercept), sd=LDK81$sd), TT ), na.rm=TRUE )
-INT_LDK81 <- mean( intscore( list(mean=(LDK81$predictor + intercept), sd=LDK81$sd), TT ), na.rm=TRUE )
-CVG_LDK81 <- mean( cvg( list(mean=(LDK81$predictor+ intercept), sd=LDK81$sd), TT ), na.rm=TRUE )
+CRPS_LDK81 <- mean( crps( list(mean=(LDK81$predictor + intercept), sd=sqrt( LDK81$sd^2 + ER$tau_hat )), TT ), na.rm=TRUE )
+INT_LDK81 <- mean( intscore( list(mean=(LDK81$predictor + intercept), sd=sqrt( LDK81$sd^2 + ER$tau_hat )), TT ), na.rm=TRUE )
+CVG_LDK81 <- mean( cvg( list(mean=(LDK81$predictor+ intercept), sd=sqrt( LDK81$sd^2 + ER$tau_hat )), TT ), na.rm=TRUE )
 
 MAE_LDK81 
 RMSE_LDK81
